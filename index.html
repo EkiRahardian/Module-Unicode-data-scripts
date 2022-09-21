@@ -2,11 +2,11 @@
 <body>
 	<pre id='test'></pre>
 	<script>
+		let ranges = [];
+		let singles = '';
 		fetch('Scripts.txt').then(function(response) {
 			response.text().then(function(text) {
-				let singles = text.split("\n");
-				let ranges = [];
-				singles = singles.filter(function(filter) {
+				singles = text.split("\n").filter(function(filter) {
 					return (filter.startsWith("#") === false && filter !== '');
 				});
 				for (let i = 0; i < singles.length; i++) {
