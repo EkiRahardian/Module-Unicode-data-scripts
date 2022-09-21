@@ -2,10 +2,12 @@
 <body>
 	<p id='test'></p>
 	<script>
-		let storedText;
-		fetch('Scripts.txt').then(function(response) {
+		fetch('https://www.unicode.org/Public/UNIDATA/Scripts.txt').then(function(response) {
 			response.text().then(function(text) {
-				storedText = text;
+				let storedText = text.split("\n");
+				storedText = storedText.filter(function(filter) {
+					return (filter.startsWith("#") === false || filter !== '');
+				});
 				document.getElementById('test').textContent = storedText;
 			});
 		});
