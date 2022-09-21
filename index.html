@@ -11,10 +11,10 @@
 				aliases = text1.split("\n").filter((filter) => {
 					return filter.startsWith("sc ;");
 				});
-				aliases = aliases.join('<br>');
 				for (let i = 0; i < aliases.length; i++) {
 					aliases[i] = aliases[i].replace(/ +(?= )/g,'');
 				}
+				aliases = aliases.join('<br>');
 			});
 			fetch('Scripts.txt').then((response2) => {
 				response2.text().then((text2) => {
