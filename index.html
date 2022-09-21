@@ -8,6 +8,9 @@
 				storedText = storedText.filter(function(filter) {
 					return (filter.startsWith("#") === false && filter !== '');
 				});
+				for (let i = 0; i < storedText.length; i++) {
+					storedText[i] = storedText[i].substring(0, storedText[i].indexOf('#'));
+				}
 				storedText = storedText.join('<br>');
 				document.getElementById('test').innerHTML = storedText;
 			});
