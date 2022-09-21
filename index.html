@@ -6,7 +6,7 @@
 			response.text().then(function(text) {
 				let storedText = text.split("\n");
 				storedText = storedText.filter(function(filter) {
-					return (filter.startsWith("#") === false || filter !== '');
+					return (filter.startsWith("#") === false && filter !== '');
 				});
 				storedText = storedText.join('<br>');
 				document.getElementById('test').innerHTML = storedText;
