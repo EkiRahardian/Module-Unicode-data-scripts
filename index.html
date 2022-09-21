@@ -36,7 +36,7 @@
 					});
 					for (let i = 0; i < singles.length; i++) {
 						singles[i] = singles[i].substring(0, singles[i].indexOf('#')).replace(/ +(?= )/g,'').split(' ; ');
-						console.log(singles[i][1]);
+						console.log(singles[i][1].slice(0, -1));
 						singles[i][1] = replaceLetters(aliasOf, alias, singles[i][1]);
 						singles[i] = singles[i][0] + ' ' + singles[i][1]
 						if (singles[i].includes("..")) {
