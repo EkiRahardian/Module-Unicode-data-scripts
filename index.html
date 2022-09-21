@@ -19,7 +19,7 @@
 					aliases_temp[i][1] = aliases_temp[i][1].replace('_', ' ');
 					aliases += '		' + aliases_temp[i][0] + ' = "' + aliases_temp[i][1] + '",<br>';
 				}
-				aliases += '	},<br>}<br><br>-- For binary searching, because the length operator doesn\'t work on tables<br>-- loaded with mw.loadData.<br>data.ranges.length = #data.ranges<br><br>return data';
+				aliases += '<br>	},<br>}<br><br>-- For binary searching, because the length operator doesn\'t work on tables<br>-- loaded with mw.loadData.<br>data.ranges.length = #data.ranges<br><br>return data';
 			});
 			fetch('Scripts.txt').then((response2) => { //Get file from https://www.unicode.org/Public/UNIDATA/Scripts.txt
 				function replaceLetters(replace1, replace2, string) {
