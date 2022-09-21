@@ -2,24 +2,34 @@
 <body>
 	<pre id='test'></pre>
 	<script>
+		"use strict";
 		let ranges = [];
-		let singles = '';
-		fetch('Scripts.txt').then(function(response) {
-			response.text().then(function(text) {
-				singles = text.split("\n").filter(function(filter) {
-					return (filter.startsWith("#") === false && filter !== '');
+		let singles = [];
+		let alias = [];
+		fetch('PropertyValueAliases.txt').then((response1) => {
+			response1.text().then((text1) => {
+				alias = text1.split("\n").filter((filter) => {
+					return filter.startsWith("sc ;");
 				});
-				for (let i = 0; i < singles.length; i++) {
-					singles[i] = singles[i].substring(0, singles[i].indexOf('#')).replace(/ +(?= )/g,'');
-					if (singles[i].includes("..")) {
-						ranges.push(singles[i]);
-						singles.splice(i, 1);
-						i--;
+				alias = alias.join('<br>');
+			});
+			fetch('Scripts.txt').then((response2) => {
+				response2.text().then((text2) => {
+					singles = text2.split("\n").filter((filter) => {
+						return (filter.startsWith("#") === false && filter !== '');
+					});
+					for (let i = 0; i < singles.length; i++) {
+						singles[i] = singles[i].substring(0, singles[i].indexOf('#')).replace(/ +(?= )/g,'');
+						if (singles[i].includes("..")) {
+							ranges.push(singles[i]);
+							singles.splice(i, 1);
+							i--;
+						}
 					}
-				}
-				singles = singles.join('<br>');
-				ranges = ranges.join('<br>');
-				document.getElementById('test').innerHTML = singles + '<br>' + ranges;
+					singles = singles.join('<br>');
+					ranges = ranges.join('<br>');
+					document.getElementById('test').innerHTML = singles + '<br>' + ranges + '<br>' + alias;
+				});
 			});
 		});
 	</script>
