@@ -29,24 +29,33 @@
 			});
 			fetch('Scripts.txt').then((response2) => {
 				let ranges = [];
-				let singles = [];
+				let singles = 'local data = {<br>	singles = {<br>';
+				let singles_temp = [];
 				response2.text().then((text2) => {
-					singles = text2.split("\n").filter((filter) => {
+					singles_temp = text2.split("\n").filter((filter) => {
 						return (filter.startsWith("#") === false && filter !== '');
 					});
-					for (let i = 0; i < singles.length; i++) {
-						singles[i] = singles[i].substring(0, singles[i].indexOf('#')).replace(/ +(?= )/g,'').split(' ; ');
-						singles[i][1] = replaceLetters(aliasOf, alias, singles[i][1].slice(0, -1));
-						singles[i] = singles[i][0] + ' ' + singles[i][1]
-						if (singles[i].includes("..")) {
-							ranges.push(singles[i]);
-							singles.splice(i, 1);
+					for (let i = 0; i < singles_temp.length; i++) {
+						singles_temp[i] = singles_temp[i].substring(0, singles_temp[i].indexOf('#')).replace(/ +(?= )/g,'').split(' ; ');
+						singles_temp[i] = singles_temp[i][0] + ' ' + replaceLetters(aliasOf, alias, singles_temp[i][1].slice(0, -1));
+						if (singles_temp[i].includes("..")) {
+							ranges.push(singles_temp[i]);
+							singles_temp.splice(i, 1);
 							i--;
 						}
 					}
-					singles = singles.join('<br>');
+					for (let i = 0; i < singles_temp.length; i++) {
+						singles_temp[i] = singles_temp[i].split(' ');
+						if (singles_temp[i].length === 4) {
+							singles_temp[i] = '0x0' + singles_temp[i];
+						}
+						else if (singles_temp[i].length === 5) {
+							singles_temp[i] = '0x' + singles_temp[i];
+						}
+					}
+					singles_temp = singles_temp.join('<br>');
 					ranges = ranges.join('<br>');
-					document.getElementById('test').innerHTML = singles + '<br>' + ranges + '<br>' + aliases;
+					document.getElementById('test').innerHTML = singles_temp + '<br>' + ranges + '<br>' + aliases;
 				});
 			});
 		});
