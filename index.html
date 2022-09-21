@@ -2,7 +2,7 @@
 <body>
 	<p id='test'></p>
 	<script>
-		fetch('https://www.unicode.org/Public/UNIDATA/Scripts.txt').then(function(response) {
+		fetch('Scripts.txt').then(function(response) {
 			response.text().then(function(text) {
 				let storedText = text.split("\n");
 				storedText = storedText.filter(function(filter) {
