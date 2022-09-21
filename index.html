@@ -1,0 +1,11 @@
+<head></head>
+<body>
+  <script>
+	const client = new XMLHttpRequest();
+	client.open('GET', 'https://www.unicode.org/Public/UNIDATA/Scripts.txt');
+	client.onreadystatechange = function() {
+		const test = client.responseText;	
+	}
+	client.send();
+  </script>
+</body>
