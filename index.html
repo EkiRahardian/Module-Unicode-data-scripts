@@ -26,6 +26,7 @@
 					aliases += '		' + aliases_temp[i][0] + ' = "' + aliases_temp[i][1] + '",<br>';
 				}
 				aliases += '	},<br>';
+				console.log(alias);
 			});
 			fetch('Scripts.txt').then((response2) => {
 				let ranges = [];
