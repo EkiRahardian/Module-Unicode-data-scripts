@@ -9,7 +9,7 @@
 					return (filter.startsWith("#") === false || filter !== '');
 				});
 				storedText = storedText.join('<br>');
-				document.getElementById('test').textContent = storedText;
+				document.getElementById('test').innerHTML = storedText;
 			});
 		});
 	</script>
