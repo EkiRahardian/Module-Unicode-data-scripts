@@ -5,13 +5,16 @@
 		"use strict";
 		let ranges = [];
 		let singles = [];
-		let alias = [];
-		fetch('PropertyValueAliases.txt').then((response1) => {
+		let aliases = [];
+		fetch('PropertyValuealiaseses.txt').then((response1) => {
 			response1.text().then((text1) => {
-				alias = text1.split("\n").filter((filter) => {
+				aliases = text1.split("\n").filter((filter) => {
 					return filter.startsWith("sc ;");
 				});
-				alias = alias.join('<br>');
+				aliases = aliases.join('<br>');
+				for (let i = 0; i < aliases.length; i++) {
+					aliases[i] = aliases[i].replace(/ +(?= )/g,'');
+				}
 			});
 			fetch('Scripts.txt').then((response2) => {
 				response2.text().then((text2) => {
@@ -28,7 +31,7 @@
 					}
 					singles = singles.join('<br>');
 					ranges = ranges.join('<br>');
-					document.getElementById('test').innerHTML = singles + '<br>' + ranges + '<br>' + alias;
+					document.getElementById('test').innerHTML = singles + '<br>' + ranges + '<br>' + aliases;
 				});
 			});
 		});
