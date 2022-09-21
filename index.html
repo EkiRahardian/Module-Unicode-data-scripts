@@ -1,6 +1,6 @@
 <head></head>
 <body>
-	<p id='test' style='white-space: pre-line'></p>
+	<p id='test'></p>
 	<script>
 		fetch('Scripts.txt').then(function(response) {
 			response.text().then(function(text) {
@@ -8,6 +8,7 @@
 				storedText = storedText.filter(function(filter) {
 					return (filter.startsWith("#") === false || filter !== '');
 				});
+				storedText = storedText.join('<br>');
 				document.getElementById('test').textContent = storedText;
 			});
 		});
