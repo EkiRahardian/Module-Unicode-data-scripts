@@ -4,15 +4,20 @@
 	<script>
 		fetch('Scripts.txt').then(function(response) {
 			response.text().then(function(text) {
-				let storedText = text.split("\n");
-				storedText = storedText.filter(function(filter) {
+				let singles = text.split("\n");
+				let ranges = [];
+				singles = singles.filter(function(filter) {
 					return (filter.startsWith("#") === false && filter !== '');
 				});
-				for (let i = 0; i < storedText.length; i++) {
-					storedText[i] = storedText[i].substring(0, storedText[i].indexOf('#'));
+				for (let i = 0; i < singles.length; i++) {
+					singles[i] = singles[i].substring(0, singles[i].indexOf('#'));
+					if (singles[i].includes("..")) {
+						ranges.push(singles[i]);
+						singles.splice(i, 1);
+					}
 				}
-				storedText = storedText.join('<br>');
-				document.getElementById('test').innerHTML = storedText;
+				singles = singles.join('<br>');
+				document.getElementById('test').innerHTML = singles + '<br>' + ranges;
 			});
 		});
 	</script>
