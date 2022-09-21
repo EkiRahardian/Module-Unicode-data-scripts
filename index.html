@@ -78,6 +78,8 @@
 					}
 					ranges_temp.sort();
 					for (let i = 0; i < ranges_temp.length; i++) {
+						ranges_temp[i] = ranges_temp[i].split(' ');
+						ranges_temp[i][0] = ranges_temp[i][0].split('..');
 						ranges += '		{ ' + ranges_temp[i][0][0] + ', ' + ranges_temp[i][0][1] + ', "' + ranges_temp[i][1] + '" },<br>'
 					}
 					singles += '	},<br><br>';
