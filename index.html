@@ -23,15 +23,17 @@
 					aliases_temp[i] = aliases_temp[i].replace(/ +(?= )/g,'').replace("sc ; ", "").replace(" ; Qaai", "").replace(" ; Qaac", "").split(' ; ');
 					alias.push(aliases_temp[i][0]);
 					aliasOf.push(aliases_temp[i][1]);
+					aliases_temp[i][1] = aliases_temp[i][1].replace('_', ' ');
 					aliases += '		' + aliases_temp[i][0] + ' = "' + aliases_temp[i][1] + '",<br>';
 				}
-				aliases += '	},<br>';
+				aliases += '	},<br>}<br><br>-- For binary searching, because the length operator doesn\'t work on tables<br>-- loaded with mw.loadData.<br>data.ranges.length = #data.ranges<br><br>return data';
 			});
 			fetch('Scripts.txt').then((response2) => {
 				let ranges = [];
-				let singles = 'local data = {<br>	singles = {<br>';
+				let singles = '--[=[<br>-- Official Unicode script values for individual codepoints and ranges of<br>-- codepoints.<br><br>-- https://www.unicode.org/Public/UNIDATA/Scripts.txt provided<br>-- the script names, and https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt<br>-- provided script codes corresponding to the names (see [[w:Script (Unicode)]]).<br>--]=]<br><br>';
 				let singles_temp = [];
 				response2.text().then((text2) => {
+					singles += 'local data = {<br>	singles = {<br>';
 					singles_temp = text2.split("\n").filter((filter) => {
 						return (filter.startsWith("#") === false && filter !== '');
 					});
@@ -54,7 +56,7 @@
 						}
 						singles += '		[' + singles_temp[i][0] + '] = "' + singles_temp[i][1] + '",<br>';
 					}
-					singles += '},<br>';
+					singles += '	},<br>';
 					ranges = ranges.join('<br>');
 					document.getElementById('test').innerHTML = singles + '<br>' + ranges + '<br>' + aliases;
 				});
