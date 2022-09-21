@@ -3,7 +3,7 @@
 	<pre id='test'></pre>
 	<script>
 		"use strict";
-		fetch('PropertyValueAliases.txt').then((response1) => {
+		fetch('PropertyValueAliases.txt').then((response1) => { //Get file from https://www.unicode.org/Public/UNIDATA/PropertyValueAliases.txt
 			let aliases = '	aliases = {<br>';
 			let aliases_temp = [];
 			let alias = [];
@@ -21,7 +21,7 @@
 				}
 				aliases += '	},<br>}<br><br>-- For binary searching, because the length operator doesn\'t work on tables<br>-- loaded with mw.loadData.<br>data.ranges.length = #data.ranges<br><br>return data';
 			});
-			fetch('Scripts.txt').then((response2) => {
+			fetch('Scripts.txt').then((response2) => { //Get file from https://www.unicode.org/Public/UNIDATA/Scripts.txt
 				function replaceLetters(replace1, replace2, string) {
 					const index = replace1.indexOf(string);
 					if (index !== -1) {
