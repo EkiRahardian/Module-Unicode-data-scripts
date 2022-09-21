@@ -16,7 +16,7 @@
 					aliases_temp[i] = aliases_temp[i].replace(/ +(?= )/g,'').replace("sc ; ", "").replace(" ; Qaai", "").replace(" ; Qaac", "").split(' ; ');
 					alias.push(aliases_temp[i][0]);
 					aliasOf.push(aliases_temp[i][1]);
-					aliases_temp[i][1] = aliases_temp[i][1].replace('_', ' ');
+					aliases_temp[i][1] = aliases_temp[i][1].replaceAll('_', ' ');
 					aliases += '		' + aliases_temp[i][0] + ' = "' + aliases_temp[i][1] + '",<br>';
 				}
 				aliases += '<br>	},<br>}<br><br>-- For binary searching, because the length operator doesn\'t work on tables<br>-- loaded with mw.loadData.<br>data.ranges.length = #data.ranges<br><br>return data';
