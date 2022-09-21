@@ -47,8 +47,6 @@
 							i--;
 						}
 					}
-					singles_temp.sort();
-					ranges_temp.sort();
 					for (let i = 0; i < singles_temp.length; i++) {
 						singles_temp[i] = singles_temp[i].split(' ');
 						if (singles_temp[i][0].length === 4) {
@@ -57,6 +55,11 @@
 						else if (singles_temp[i][0].length === 5) {
 							singles_temp[i][0] = '0x' + singles_temp[i][0];
 						}
+						singles_temp[i] = singles_temp[i][0] + ' ' + singles_temp[i][1]
+					}
+					singles_temp.sort();
+					for (let i = 0; i < singles_temp.length; i++) {
+						singles_temp[i] = singles_temp[i].split(' ');
 						singles += '		[' + singles_temp[i][0] + '] = "' + singles_temp[i][1] + '",<br>';
 					}
 					for (let i = 0; i < ranges_temp.length; i++) {
@@ -70,6 +73,11 @@
 								ranges_temp[i][0][j] = '0x' + ranges_temp[i][0][j];
 							}
 						}
+						ranges_temp[i][0] = ranges_temp[i][0][0] + '..' + ranges_temp[i][0][1]
+						ranges_temp[i] = ranges_temp[i][0] + ' ' + ranges_temp[i][1]
+					}
+					ranges_temp.sort();
+					for (let i = 0; i < ranges_temp.length; i++) {
 						ranges += '		{ ' + ranges_temp[i][0][0] + ', ' + ranges_temp[i][0][1] + ', "' + ranges_temp[i][1] + '" },<br>'
 					}
 					singles += '	},<br><br>';
