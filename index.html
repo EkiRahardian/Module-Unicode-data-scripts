@@ -47,15 +47,16 @@
 					for (let i = 0; i < singles_temp.length; i++) {
 						singles_temp[i] = singles_temp[i].split(' ');
 						if (singles_temp[i][0].length === 4) {
-							singles_temp[i][0] = '0x0' + singles_temp[i];
+							singles_temp[i][0] = '0x0' + singles_temp[i][0];
 						}
 						else if (singles_temp[i][0].length === 5) {
-							singles_temp[i][0] = '0x' + singles_temp[i];
+							singles_temp[i][0] = '0x' + singles_temp[i][0];
 						}
+						singles += '		[' + singles_temp[i][0] + '] = "' + singles_temp[i][1] + '",<br>';
 					}
-					singles_temp = singles_temp.join('<br>');
+					singles += '},<br>';
 					ranges = ranges.join('<br>');
-					document.getElementById('test').innerHTML = singles_temp + '<br>' + ranges + '<br>' + aliases;
+					document.getElementById('test').innerHTML = singles + '<br>' + ranges + '<br>' + aliases;
 				});
 			});
 		});
