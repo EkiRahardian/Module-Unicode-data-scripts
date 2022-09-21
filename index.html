@@ -5,7 +5,6 @@
 		"use strict";
 		function replaceLetters(replace1, replace2, string) {
 			const index = replace1.indexOf(string);
-			console.log(replace1[index] + ' ' + replace2[index] + ' ' + string);
 			if (index !== -1) {
 				string = string.replace(replace1[index], replace2[index]);
 			}
@@ -27,6 +26,7 @@
 					aliases += '		' + aliases_temp[i][0] + ' = "' + aliases_temp[i][1] + '",<br>';
 				}
 				aliases += '	},<br>';
+				console.log(aliasOf);
 			});
 			fetch('Scripts.txt').then((response2) => {
 				let ranges = [];
