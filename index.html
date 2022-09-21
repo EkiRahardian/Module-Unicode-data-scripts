@@ -11,7 +11,7 @@
 			return string;
 		}
 		fetch('PropertyValueAliases.txt').then((response1) => {
-			let aliases = '&emsp;aliases = {<br>';
+			let aliases = '	aliases = {<br>';
 			let aliases_temp = [];
 			let alias = [];
 			let aliasOf = [];
@@ -23,9 +23,9 @@
 					aliases_temp[i] = aliases_temp[i].replace(/ +(?= )/g,'').replace("sc ; ", "").replace(" ; Qaai", "").replace(" ; Qaac", "").split(' ; ');
 					alias.push(aliases_temp[i][0]);
 					aliasOf.push(aliases_temp[i][1]);
-					aliases += '&emsp;&emsp;' + aliases_temp[i][0] + ' = "' + aliases_temp[i][1] + '",<br>';
+					aliases += '		' + aliases_temp[i][0] + ' = "' + aliases_temp[i][1] + '",<br>';
 				}
-				aliases += '&emsp;},<br>';
+				aliases += '	},<br>';
 			});
 			fetch('Scripts.txt').then((response2) => {
 				let ranges = [];
