@@ -14,6 +14,7 @@
 					if (singles[i].includes("..")) {
 						ranges.push(singles[i]);
 						singles.splice(i, 1);
+						i--;
 					}
 				}
 				singles = singles.join('<br>');
