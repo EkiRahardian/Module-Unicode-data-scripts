@@ -3,7 +3,7 @@
 	<p id='test'></p>
 	<script>
 		let storedText;
-		fetch('https://www.unicode.org/Public/UNIDATA/Scripts.txt').then(function(response) {
+		fetch('Scripts.txt').then(function(response) {
 			response.text().then(function(text) {
 				storedText = text;
 				document.getElementById('test').textContent = storedText;
